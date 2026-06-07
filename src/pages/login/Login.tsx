@@ -20,9 +20,6 @@ export function Login() {
         localStorage.setItem('token', response.accessToken);
     };
 
-    const handleLanguageChange = () => {
-        setLanguage(language === 'es' ? 'en' : 'es');
-    };
     return (
         <div className="login-container">
             <div className="login-brand">
