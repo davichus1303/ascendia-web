@@ -1,0 +1,12 @@
+{
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Login",
+        "learn": "Learn",
+        "grow": "Grow",
+        "advance": "Avanza",
+        "createAccount": "Create account"
+    }
+}

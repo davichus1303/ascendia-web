@@ -1,0 +1,12 @@
+{
+    "login": {
+        "title": "Iniciar sesión",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "submit": "Iniciar sesión",
+        "learn": "Aprende",
+        "grow": "Crece",
+        "advance": "Avanza",
+        "createAccount": "Crear cuenta"
+    }
+}
