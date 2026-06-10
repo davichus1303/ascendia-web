@@ -6,7 +6,25 @@
         "submit": "Login",
         "learn": "Learn",
         "grow": "Grow",
-        "advance": "Avanza",
-        "createAccount": "Create account"
+        "advance": "Advance",
+        "createAccount": "Create account",
+        "success": "Session started successfully",
+        "failed": "Invalid username or password"
+    },
+    "user": {
+        "create": {
+            "title": "Create user",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "surName": "Sur name",
+            "email": "Email",
+            "password": "Password",
+            "passwordRepeat": "Repeat password",
+            "createButton": "Create user",
+            "company": "Company",
+            "role": "Role",
+            "selectCompany": "Select company",
+            "selectRole": "Select role"
+        }
     }
 }
