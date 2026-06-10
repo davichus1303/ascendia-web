@@ -7,6 +7,24 @@
         "learn": "Aprende",
         "grow": "Crece",
         "advance": "Avanza",
-        "createAccount": "Crear cuenta"
+        "createAccount": "Crear cuenta",
+        "success": "Sesión iniciada correctamente",
+        "failed": "Usuario o contraseña incorrectos"
+    },
+    "user": {
+        "create": {
+            "title": "Crear usuario",
+            "firstName": "Nombre",
+            "lastName": "Apellido",
+            "surName": "Apellido materno",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "passwordRepeat": "Repetir contraseña",
+            "createButton": "Crear usuario",
+            "company": "Empresa",
+            "role": "Rol",
+            "selectCompany": "Seleccionar empresa",
+            "selectRole": "Seleccionar rol"
+        }
     }
 }
