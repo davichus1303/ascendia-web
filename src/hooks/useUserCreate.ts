@@ -9,8 +9,8 @@ export function useUserCreate() {
         email: '',
         password: '',
         passwordRepeat: '',
-        companyOid: '',
-        roleOid: '',
+        companyOId: '',
+        roleOId: '',
     });
     return {
         user,
@@ -27,5 +27,9 @@ export function useUserCreate() {
         setPassword: (password: string) => setUser({ ...user, password }),
         passwordRepeat: user.passwordRepeat,
         setPasswordRepeat: (passwordRepeat: string) => setUser({ ...user, passwordRepeat }),
+        companyOId: user.companyOId,
+        setCompanyOId: (companyOId: string) => setUser({ ...user, companyOId }),
+        roleOId: user.roleOId,
+        setRoleOId: (roleOId: string) => setUser({ ...user, roleOId }),
     };
 }
