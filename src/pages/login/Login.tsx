@@ -1,13 +1,14 @@
 import './Login.css';
 import logoAscendia from '../../assets/logoAscendia.png';
 import { AuthService } from '../../services/AuthService';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import es from '../../i18n/es.json';
 import en from '../../i18n/en.json';
 import { GENERAL_CONSTANTS } from '../../constants/General.constants';
 import { HEADER_CONSTANTS } from '../../constants/header.constants';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 interface LoginProps {
     language: string;
@@ -21,7 +22,14 @@ export function Login({ language }: LoginProps) {
     const dictionary = language === HEADER_CONSTANTS.ES_LOCALE ? es : en;
 
     const navigate = useNavigate();
+    const location = useLocation();
 
+    useEffect(() => {
+        if (location.state?.successMessage) {
+            toast.success(location.state.successMessage);
+        }
+    }, [location.state]);
+    
     const redirectToRegister = () => {
         navigate('/user/create');
     };
