@@ -1,16 +1,93 @@
 import type { UserRequest } from "../../interface/user.interface";
+import type { Company } from "../../interface/Company.interface";
+import type { Role } from "../../interface/Role.interface";
+import { useState } from "react";
+import { userValidator } from "../../validators/user.validator";
+import { generalRegex } from "../../utils/generalRegex";
 
 interface UserCreateFormProps {
     dictionary: any;
     user: UserRequest;
     setUser: React.Dispatch<React.SetStateAction<UserRequest>>;
+    companies: Company[];
+    roles: Role[];
+    onCreateUser: () => void;
 }
 
 export function UserCreateForm({
     dictionary,
     user,
-    setUser
+    setUser,
+    companies,
+    roles,
+    onCreateUser
 }: UserCreateFormProps) {
+    const isValid = userValidator.validateUser(user);
+    const emailRegex = generalRegex.email;
+    const passwordRegex = generalRegex.password;
+
+    /**
+     * @description Gets the password error message
+     * @returns {string} The password error message
+     */
+    const passwordError = () => {
+        const { password } = user;
+        const isPasswordMissing = !password;
+        const isPasswordInvalid = password && !passwordRegex.test(password);
+
+        if (!touched.password) {
+            return "";
+        }
+
+        if (isPasswordMissing) {
+            return dictionary.user.errors.passwordRequired;
+        }
+
+        if (isPasswordInvalid) {
+            return dictionary.user.errors.passwordInvalid;
+        }
+        return "";
+    };
+    /**
+     * @description Checks if the passwords are equal
+     * @returns {boolean} True if the passwords are equal, false otherwise
+     */
+    const isPasswordEqual = () => {
+        return user.password && user.passwordRepeat && user.password !== user.passwordRepeat;
+    };
+
+    /**
+     * @description Gets the email error message
+     * @returns {string} The email error message
+     */
+    const getEmailError = () => {
+        const { email } = user;
+        const isEmailMissing = !email;
+        const isEmailInvalid = email && !emailRegex.test(email);
+
+        if (!touched.email) {
+            return "";
+        }
+
+        if (isEmailMissing) {
+            return dictionary.user.errors.emailRequired;
+        }
+
+        if (isEmailInvalid) {
+            return dictionary.user.errors.emailInvalid;
+        }
+
+        return "";
+    };
+    const [touched, setTouched] = useState({
+        name: false,
+        lastName: false,
+        email: false,
+        password: false,
+        passwordRepeat: false,
+        companyOid: false,
+        roleOid: false
+    });
     return (
         <form className="user-create-form">
 
@@ -32,7 +109,14 @@ export function UserCreateForm({
                                 name: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, name: true })}
+                        className={touched.name && !user.name ? "error-input" : ""}
                     />
+                    {touched.name && !user.name && (
+                        <span className="error">
+                            {dictionary.user.errors.firstNameRequired}
+                        </span>
+                    )}
                 </div>
 
                 <div className="form-field">
@@ -51,7 +135,14 @@ export function UserCreateForm({
                                 lastName: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, lastName: true })}
+                        className={touched.lastName && !user.lastName ? "error-input" : ""}
                     />
+                    {touched.lastName && !user.lastName && (
+                        <span className="error">
+                            {dictionary.user.errors.lastNameRequired}
+                        </span>
+                    )}
                 </div>
 
             </div>
@@ -93,7 +184,14 @@ export function UserCreateForm({
                                 email: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, email: true })}
+                        className={getEmailError() ? "error-input" : ""}
                     />
+                    {getEmailError() && (
+                        <span className="error">
+                            {getEmailError()}
+                        </span>
+                    )}
                 </div>
 
             </div>
@@ -116,7 +214,14 @@ export function UserCreateForm({
                                 password: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, password: true })}
+                        className={passwordError() ? "error-input" : ""}
                     />
+                    {passwordError() && (
+                        <span className="error">
+                            {passwordError()}
+                        </span>
+                    )}
                 </div>
 
                 <div className="form-field">
@@ -135,7 +240,14 @@ export function UserCreateForm({
                                 passwordRepeat: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, passwordRepeat: true })}
+                        className={isPasswordEqual() ? "error-input" : ""}
                     />
+                    {isPasswordEqual() && (
+                        <span className="error">
+                            {dictionary.user.errors.passwordMismatch}
+                        </span>
+                    )}
                 </div>
 
             </div>
@@ -149,18 +261,30 @@ export function UserCreateForm({
 
                     <select
                         id="company"
-                        value={user.companyOid}
+                        value={user.companyOId}
                         onChange={(e) =>
                             setUser({
                                 ...user,
-                                companyOid: e.target.value
+                                companyOId: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, companyOid: true })}
+                        className={touched.companyOid && !user.companyOId ? "error-input" : ""}
                     >
                         <option value="">
                             {dictionary.user.create.selectCompany}
                         </option>
+                        {companies.map((company) => (
+                            <option key={company._id} value={company._id}>
+                                {company.name}
+                            </option>
+                        ))}
                     </select>
+                    {touched.companyOid && !user.companyOId && (
+                        <span className="error">
+                            {dictionary.user.errors.companyRequired}
+                        </span>
+                    )}
                 </div>
 
                 <div className="form-field">
@@ -170,29 +294,43 @@ export function UserCreateForm({
 
                     <select
                         id="role"
-                        value={user.roleOid}
+                        value={user.roleOId}
                         onChange={(e) =>
                             setUser({
                                 ...user,
-                                roleOid: e.target.value
+                                roleOId: e.target.value
                             })
                         }
+                        onBlur={() => setTouched({ ...touched, roleOid: true })}
+                        className={touched.roleOid && !user.roleOId ? "error-input" : ""}
                     >
                         <option value="">
                             {dictionary.user.create.selectRole}
                         </option>
+                        {roles.map((role) => (
+                            <option key={role._id} value={role._id}>
+                                {role.name}
+                            </option>
+                        ))}
                     </select>
+                    {touched.roleOid && !user.roleOId && (
+                        <span className="error">
+                            {dictionary.user.errors.roleRequired}
+                        </span>
+                    )}
                 </div>
 
             </div>
+            <div className="form-actions">
+                <button
+                    type="button"
+                    className={isValid ? "send-button" : "send-button disabled"}
+                    onClick={onCreateUser}
+                    disabled={!isValid}>
+                    {dictionary.user.create.createButton}
+                </button>
 
-            <button
-                type="button"
-                className="create-user-button"
-            >
-                {dictionary.user.create.createButton}
-            </button>
-
+            </div>
         </form>
     );
 }

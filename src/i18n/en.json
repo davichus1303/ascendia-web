@@ -25,6 +25,26 @@
             "role": "Role",
             "selectCompany": "Select company",
             "selectRole": "Select role"
+        },
+        "errors": {
+            "errorCreatingUser": "Error creating user",
+            "passwordsNotMatch": "Passwords do not match",
+            "invaldPasswordFormat": "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+            "invalidEmailFormat": "Invalid email format",
+            "firstNameRequired": "First name is required",
+            "lastNameRequired": "Last name is required",
+            "emailRequired": "Email is required",
+            "passwordRequired": "Password is required",
+            "passwordRepeatRequired": "Password repeat is required",
+            "companyRequired": "Company is required",
+            "roleRequired": "Role is required",
+            "emailInvalid": "Invalid email format (user@domain.com)",
+            "passwordInvalid": "Password must contain (uppercase, lowercase, number and special character - minimum 8 characters)",
+            "passwordMismatch": "Passwords do not match",
+            "creatingError": "Error creating user"
+        },
+        "successMessages": {
+            "userCreatedSuccessfully": "User created successfully"
         }
     }
 }

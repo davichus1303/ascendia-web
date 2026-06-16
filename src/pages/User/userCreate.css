@@ -161,7 +161,7 @@
    BUTTON
 ========================== */
 
-.create-user-button {
+.send-button {
     justify-content: flex-end;
     width: auto;
     margin-top: 24px;
@@ -176,6 +176,37 @@
     transition: all 0.2s ease;
 }
 
-.create-user-button:hover {
-    background-color: #14b8a6;
+.send-button:hover {
+    background-color: #008000;
+}
+
+.error-input {
+    border-color: #ef4444 !important;
+}
+
+.error {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+.send-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.cancel-button {
+    margin-left: 16px;
+    background-color: white;
+    color: #0366d6;
+    border: 1px solid #0366d6;
+    
+}
+
+/*
+    FORM ACTIONS
+*/
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
 }

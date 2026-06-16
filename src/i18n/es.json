@@ -25,6 +25,26 @@
             "role": "Rol",
             "selectCompany": "Seleccionar empresa",
             "selectRole": "Seleccionar rol"
+        },
+        "errors": {
+            "errorCreatingUser": "Error al crear usuario",
+            "passwordsNotMatch": "Las contraseñas no coinciden",
+            "invaldPasswordFormat": "La contraseña debe contener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial",
+            "firstNameRequired": "El nombre es requerido",
+            "lastNameRequired": "El apellido es requerido",
+            "emailRequired": "El correo electrónico es requerido",
+            "passwordRequired": "La contraseña es requerida",
+            "passwordRepeatRequired": "La repetición de contraseña es requerida",
+            "companyRequired": "La empresa es requerida",
+            "roleRequired": "El rol es requerido",
+            "emailInvalid": "Formato de correo electrónico inválido (usuario@dominio.com)",
+            "passwordInvalid": "La contraseña debe contener (Mayúscula, minúscula, número y carácter especial - mínimo 8 caracteres)",
+            "passwordMismatch": "Las contraseñas no coinciden",
+            "invalidEmailFormat": "Formato de correo electrónico inválido (usuario@dominio.com)",
+            "creatingError": "Error al crear usuario"
+        },
+        "successMessages": {
+            "userCreatedSuccessfully": "Usuario creado exitosamente"
         }
     }
 }
